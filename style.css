@@ -1,0 +1,225 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0a0b12;
+  --panel: rgba(13, 15, 24, 0.8);
+  --line: rgba(184, 209, 255, 0.35);
+  --gold: #f5d76e;
+  --red: #ff5e5b;
+  --green: #67f0ad;
+  --blue: #7ec8ff;
+  --steel: #dfe7ff;
+  --shadow: rgba(0, 0, 0, 0.45);
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(121, 80, 255, 0.22), transparent 30%),
+    linear-gradient(180deg, #090b15, #121933 60%, #0b0d1d);
+  color: white;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ui-top {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 10px;
+  letter-spacing: 1px;
+}
+
+.title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(245, 215, 110, 0.6);
+}
+
+.controls {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.75);
+}
+
+#gameCanvas {
+  width: 1200px;
+  height: 700px;
+  background: linear-gradient(180deg, rgba(20, 26, 40, 0.92), rgba(14, 18, 29, 0.95));
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45), inset 0 0 40px rgba(126,200,255,0.08);
+}
+
+#statusPanel {
+  position: absolute;
+  top: 86px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 460px;
+  padding: 12px 16px 14px;
+  background: rgba(7, 10, 18, 0.56);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.24);
+}
+
+#bossName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f9d58f;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.bar-wrap {
+  width: 100%;
+  height: 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-wrap.small {
+  height: 12px;
+}
+
+.bar {
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+  transition: width 0.15s ease;
+}
+
+.bar.boss {
+  background: linear-gradient(90deg, #ff7a7a, #ffb26b, #ffe87b);
+}
+
+.bar.hp {
+  background: linear-gradient(90deg, #58ec9f, #75ffc9);
+}
+
+.bar.stamina {
+  background: linear-gradient(90deg, #7dc5ff, #b8e3ff);
+}
+
+#battleText {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.76);
+  text-align: center;
+}
+
+#playerHud {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  width: 280px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(8, 11, 20, 0.68);
+  border: 1px solid var(--line);
+}
+
+.hud-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.8);
+}
+
+.hud-row .bar-wrap {
+  flex: 1;
+}
+
+#upgradePanel {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 5, 12, 0.56);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#upgradePanel.hidden {
+  display: none;
+}
+
+.upgrade-box {
+  width: 760px;
+  padding: 22px 22px 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+  background: rgba(14, 18, 28, 0.94);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.48);
+}
+
+.upgrade-box h2 {
+  margin: 0 0 16px;
+  text-align: center;
+  color: var(--gold);
+  font-size: 2rem;
+}
+
+#upgradeList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.upgrade-card {
+  background: linear-gradient(180deg, rgba(27, 32, 44, 0.9), rgba(12, 18, 27, 0.9));
+  border: 1px solid rgba(204, 214, 255, 0.2);
+  border-radius: 14px;
+  padding: 16px 14px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.upgrade-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 215, 110, 0.7);
+  box-shadow: 0 0 18px rgba(245, 215, 110, 0.18);
+}
+
+.upgrade-card h3 {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: 1.1rem;
+}
+
+.upgrade-card p {
+  margin: 0;
+  color: rgba(255,255,255,0.74);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1240px) {
+  #gameCanvas, .ui-top {
+    width: 94vw;
+  }
+
+  .ui-top {
+    font-size: 0.8rem;
+  }
+}

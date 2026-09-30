@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soul Rift: Boss Breaker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ui-top">
+      <div class="title">Soul Rift: Boss Breaker</div>
+      <div class="controls">W A S D 移動 / J 攻擊 / K 重擊 / L 格擋 / Shift 閃躲</div>
+    </div>
+
+    <canvas id="gameCanvas" width="1200" height="700"></canvas>
+
+    <div id="statusPanel">
+      <div id="bossName">Boss</div>
+      <div class="bar-wrap">
+        <div id="bossHpBar" class="bar boss"></div>
+      </div>
+      <div id="battleText">擊倒所有 Boss，突破靈魂之門</div>
+    </div>
+
+    <div id="playerHud">
+      <div class="hud-row">
+        <span>HP</span>
+        <div class="bar-wrap small"><div id="hpBar" class="bar hp"></div></div>
+      </div>
+      <div class="hud-row">
+        <span>STAMINA</span>
+        <div class="bar-wrap small"><div id="staminaBar" class="bar stamina"></div></div>
+      </div>
+    </div>
+
+    <div id="upgradePanel" class="hidden">
+      <div class="upgrade-box">
+        <h2>靈魂升級</h2>
+        <div id="upgradeList"></div>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
